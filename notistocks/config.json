@@ -1,0 +1,5 @@
+{
+  "symbols": ["AAPL", "TSLA", "MSFT", "NVDA", "BTC/USD"],
+  "api_key": "YOUR_API_KEY_HERE",
+  "notification_sound": true
+}
