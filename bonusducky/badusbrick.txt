@@ -1,0 +1,111 @@
+DELAY 1000
+GUI ENTER
+DELAY 1500
+STRING gnome-terminal
+ENTER
+DELAY 2000
+
+REM Fake hacking sequence
+STRING echo "Bypassing firewall..."
+ENTER
+DELAY 1500
+STRING echo "Decrypting root password..."
+ENTER
+DELAY 2000
+STRING echo "Hacking complete!"
+ENTER
+DELAY 1500
+
+REM Fake sudo prompt
+STRING read -s -p "[sudo] password for $USER: " pass; echo
+ENTER
+DELAY 1500
+
+REM Terminal ASCII Rickroll
+STRING curl -s https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash
+ENTER
+DELAY 5000
+
+REM Open multiple YouTube Rickrolls
+STRING xdg-open https://www.youtube.com/watch?v=dQw4w9WgXcQ
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=oHg5SJYRHA0
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=DLzxrzFCyOs
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=6_b7RDuLwcI
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=ZZ5LpwO-An4
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=EE-xtCF3T94
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=tVj0ZTS4WF4
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=QH2-TGUlwu4
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=2Z4m4lnjxkY
+ENTER
+DELAY 7000
+STRING xdg-open https://www.youtube.com/watch?v=3JWTaaS7LdU
+ENTER
+DELAY 5000
+
+REM Open text editor and type lyrics
+STRING gnome-terminal
+ENTER
+DELAY 1500
+STRING nano
+ENTER
+DELAY 1500
+STRING Never gonna give you up
+ENTER
+STRING Never gonna let you down
+ENTER
+STRING Never gonna run around and desert you
+ENTER
+STRING Never gonna make you cry
+ENTER
+STRING Never gonna say goodbye
+ENTER
+STRING Never gonna tell a lie and hurt you
+ENTER
+CTRL X
+STRING y
+ENTER
+STRING lyrics.txt
+ENTER
+DELAY 2000
+
+REM Change desktop background (requires valid image path)
+STRING gsettings set org.gnome.desktop.background picture-uri 'file:///home/$USER/Pictures/rick.png'
+ENTER
+DELAY 2000
+
+REM Use espeak or spd-say to say something aloud
+STRING espeak "You just got Rickrolled!"
+ENTER
+DELAY 2000
+STRING spd-say "You just got Rickrolled!"
+ENTER
+DELAY 3000
+
+REM Create folder with fake files
+STRING mkdir -p ~/Desktop/TOP_SECRET
+ENTER
+STRING cd ~/Desktop/TOP_SECRET
+ENTER
+DELAY 1000
+STRING touch passwords.txt do_not_open.txt rickroll.mp4
+ENTER
+DELAY 1000
+STRING for i in {1..20}; do touch "file_$i.txt"; done
+ENTER
+DELAY 1000
