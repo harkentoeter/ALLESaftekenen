@@ -18,7 +18,7 @@ REM --- Fake hacking sequence ---
 ALT F2
 STRING sh -c "xdg-terminal-exec||kgx||ptyxis||gnome-terminal"
 ENTER
-STRING bash -c "$(curl -fsSL https://raw.githubusercontent.com/Rolight/ascii-rick/main/ascii-rick.sh)"
+STRING bash -c "$(curl -fsSL https://raw.githubusercontent.com/connordelacruz/chicago-ascii.sh/master/skyline.sh)"
 ENTER
 CTRL SHIFT Q
 
