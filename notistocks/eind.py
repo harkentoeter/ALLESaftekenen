@@ -29,9 +29,9 @@ def show_menu():
             if 1 <= selection <= len(stock_symbols):
                 return stock_symbols[selection - 1]
             else:
-                print("❌ Ongeldige keuze. Probeer opnieuw.")
+                print("Ongeldige keuze. Probeer opnieuw.")
         except ValueError:
-            print("❌ Ongeldige invoer. Gebruik een nummer.")
+            print("Ongeldige invoer. Gebruik een nummer.")
 
 # Huidige prijs ophalen via API
 def fetch_price(symbol):
@@ -45,15 +45,15 @@ def fetch_price(symbol):
 # Vraag voorkeuren van gebruiker
 def get_user_preferences():
     # Doelprijs
-    target_price = input("🎯 Wil je een koersdoel instellen? Voer bedrag in (of laat leeg voor geen): ")
+    target_price = input("Wil je een koersdoel instellen? Voer bedrag in (of laat leeg voor geen): ")
     target_price = float(target_price) if target_price.strip() != "" else None
 
     # Real-time updates
-    real_time = input("⏱️ Real-time koers volgen? (ja/nee): ").strip().lower()
+    real_time = input("Real-time koers volgen? (ja/nee): ").strip().lower()
     interval = 30  # standaard: elke 30 seconden
 
     if real_time == "ja":
-        print("\n🔁 Kies update-interval:")
+        print("\nKies update-interval:")
         print("1. Elke minuut")
         print("2. Elk uur")
         print("3. Elke 2 uur")
@@ -69,7 +69,7 @@ def get_user_preferences():
                 interval = 7200
                 break
             else:
-                print("❌ Ongeldige keuze. Probeer opnieuw.")
+                print("Ongeldige keuze. Probeer opnieuw.")
     
     return target_price, interval
 
@@ -92,11 +92,11 @@ def main():
                 # Controle op doelkoers
                 if target_price is not None and not notified_target:
                     if current_price >= target_price:
-                        notify("🎯 Doelwaarde bereikt!", f"{stock} is ${current_price:.2f}!")
+                        notify(" Doelwaarde bereikt!", f"{stock} is ${current_price:.2f}!")
                         notified_target = True
 
             except Exception as e:
-                print("⚠️ Fout bij ophalen koers:", e)
+                print("Fout bij ophalen koers:", e)
 
             time.sleep(interval)
 
@@ -107,7 +107,7 @@ def main():
     try:
         thread.join()
     except KeyboardInterrupt:
-        print("\n📴 Afsluiten...")
+        print("\nAfsluiten...")
         os.system('termux-wake-unlock')
 
 if __name__ == "__main__":
