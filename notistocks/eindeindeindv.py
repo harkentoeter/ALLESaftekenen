@@ -1,16 +1,21 @@
 import os
 import time
 import json
-import threading                                    import datetime as dt
+import threading
+import datetime as dt
 import requests
-                                                    # Laad config.json
+
 with open('config.json') as f:
-    config = json.load(f)                           
-stock_symbols = config['symbols']                   api_key = config['api_key']
-use_sound = config.get('notification_sound', False) 
-# Notificatiefunctie                                def notify(title, message):
-    sound_option = "--sound" if use_sound else ""       os.system(f'termux-notification --title "{title}" --content "{message}" {sound_option}')            
-# Huidige prijs ophalen via API
+    config = json.load(f)
+
+stock_symbols = config['symbols']
+api_key = config['api_key']
+use_sound = config.get('notification_sound', False)
+
+def notify(title, message):
+    sound_option = "--sound" if use_sound else ""
+    os.system(f'termux-notification --title "{title}" --content "{message}" {sound_option}')
+
 def fetch_price(symbol):
     url = f"https://api.twelvedata.com/price?symbol={symbol}&apikey={api_key}"
     response = requests.get(url)
@@ -22,12 +27,13 @@ def fetch_price(symbol):
     except json.JSONDecodeError:
         raise Exception(f"Fout bij het verwerken van de API-response voor {symbol}")
 
-# Aandeelkeuzemenu
 def show_menu(current_prices):
-    print("📊 Kies een aandeel om te volgen:")
+    print("Kies een aandeel om te volgen:")
     for i, symbol in enumerate(stock_symbols):
-        price_display = f" (Huidige koers: ${current_prices.get(symbol, 'N/A'):.2f})"
+        price = current_prices.get(symbol)
+        price_display = f" (Huidige koers: ${price:.2f})" if price is not None else " (Huidige koers: N/A)"
         print(f"{i+1}. {symbol}{price_display}")
+    
     while True:
         try:
             selection = int(input(f"\nVoer je keuze in (1-{len(stock_symbols)}): "))
@@ -38,15 +44,15 @@ def show_menu(current_prices):
         except ValueError:
             print("Ongeldige invoer. Gebruik een nummer.")
 
-# Vraag voorkeuren van gebruiker
 def get_user_preferences(stock, current_price):
-    # Doelprijs
-    target_price_str = input(f"Huidige koers van {stock}: ${current_price:.2f}\nWil je een koersdoel instellen? Voer bedrag in (of laat leeg voor geen): ")
+    target_price_str = input(
+        f"Huidige koers van {stock}: ${current_price:.2f}\n"
+        "Wil je een koersdoel instellen? Voer bedrag in (of laat leeg voor geen): "
+    )
     target_price = float(target_price_str) if target_price_str.strip() != "" else None
 
-    # Real-time updates
     real_time = input("Real-time koers volgen? (ja/nee): ").strip().lower()
-    interval = 30  # standaard: elke 30 seconden
+    interval = 30
 
     if real_time == "ja":
         print("\nKies update-interval:")
@@ -69,11 +75,9 @@ def get_user_preferences(stock, current_price):
 
     return target_price, interval
 
-# Hoofdfunctie
 def main():
     os.system('termux-wake-lock')
 
-    # Haal de initiële koersen op
     current_prices = {}
     for symbol in stock_symbols:
         try:
@@ -99,19 +103,14 @@ def main():
                 current_price = fetch_price(stock)
                 now = dt.datetime.now().strftime("%H:%M")
                 notify(stock, f"${current_price:.2f} om {now}")
-
-                # Controle op doelkoers
                 if target_price is not None and not notified_target:
                     if current_price >= target_price:
                         notify("Doelwaarde bereikt!", f"{stock} is ${current_price:.2f}!")
                         notified_target = True
-
             except Exception as e:
                 print("Fout bij ophalen koers:", e)
-
             time.sleep(interval)
 
-    # Achtergrondthread starten
     thread = threading.Thread(target=update_loop)
     thread.start()
 
