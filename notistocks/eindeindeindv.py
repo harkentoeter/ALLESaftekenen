@@ -28,7 +28,7 @@ def fetch_price(symbol):
         raise Exception(f"Fout bij het verwerken van de API-response voor {symbol}")
 
 def show_menu(current_prices):
-    print("Kies een aandeel om te volgen:")
+    print("📊 Kies een aandeel om te volgen:")
     for i, symbol in enumerate(stock_symbols):
         price = current_prices.get(symbol)
         price_display = f" (Huidige koers: ${price:.2f})" if price is not None else " (Huidige koers: N/A)"
@@ -45,11 +45,19 @@ def show_menu(current_prices):
             print("Ongeldige invoer. Gebruik een nummer.")
 
 def get_user_preferences(stock, current_price):
-    target_price_str = input(
-        f"Huidige koers van {stock}: ${current_price:.2f}\n"
-        "Wil je een koersdoel instellen? Voer bedrag in (of laat leeg voor geen): "
-    )
-    target_price = float(target_price_str) if target_price_str.strip() != "" else None
+    print(f"Huidige koers van {stock}: ${current_price:.2f}")
+    direction = None
+    while direction not in ['omhoog', 'omlaag', 'geen']:
+        direction = input("Wil je een doel instellen? Typ 'omhoog', 'omlaag' of 'geen': ").strip().lower()
+
+    target_price = None
+    if direction != 'geen':
+        while True:
+            try:
+                target_price = float(input("Voer de doelprijs in: "))
+                break
+            except ValueError:
+                print("Ongeldige invoer. Gebruik een geldig getal.")
 
     real_time = input("Real-time koers volgen? (ja/nee): ").strip().lower()
     interval = 30
@@ -73,7 +81,7 @@ def get_user_preferences(stock, current_price):
             else:
                 print("Ongeldige keuze. Probeer opnieuw.")
 
-    return target_price, interval
+    return target_price, direction, interval
 
 def main():
     os.system('termux-wake-lock')
@@ -93,7 +101,7 @@ def main():
         os.system('termux-wake-unlock')
         return
 
-    target_price, interval = get_user_preferences(stock, initial_price)
+    target_price, direction, interval = get_user_preferences(stock, initial_price)
     notified_target = False
 
     def update_loop():
@@ -103,12 +111,18 @@ def main():
                 current_price = fetch_price(stock)
                 now = dt.datetime.now().strftime("%H:%M")
                 notify(stock, f"${current_price:.2f} om {now}")
+
                 if target_price is not None and not notified_target:
-                    if current_price >= target_price:
-                        notify("Doelwaarde bereikt!", f"{stock} is ${current_price:.2f}!")
+                    if direction == "omhoog" and current_price >= target_price:
+                        notify("Doelwaarde bereikt!", f"{stock} is gestegen naar ${current_price:.2f}")
                         notified_target = True
+                    elif direction == "omlaag" and current_price <= target_price:
+                        notify("Koers gedaald!", f"{stock} is gedaald naar ${current_price:.2f}")
+                        notified_target = True
+
             except Exception as e:
                 print("Fout bij ophalen koers:", e)
+
             time.sleep(interval)
 
     thread = threading.Thread(target=update_loop)
